@@ -3,10 +3,7 @@ package com.neelav.resource;
 import com.neelav.service.SenderService;
 import com.neelav.model.SmsRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -19,6 +16,12 @@ public class MainResource {
     @Autowired
     public MainResource(SenderService senderService) {
         this.senderService = senderService;
+    }
+
+    @GetMapping("/hello")
+    public String printHello()
+    {
+        return "Hello World";
     }
 
     @PostMapping

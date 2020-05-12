@@ -39,6 +39,23 @@ public class TwilioSmsSender implements SmsSender {
 
     }
 
+    public void sendWhatsAppSms(SmsRequest smsRequest)
+    {
+        if (isPhoneNumberValid(smsRequest.getPhoneNumber())) {
+            PhoneNumber to = new PhoneNumber("whatsapp:918763650584");
+            PhoneNumber from = new PhoneNumber("whatsapp:+14155238886");
+            String message = smsRequest.getMessage();
+            MessageCreator creator = Message.creator(to, from, message);
+            creator.create();
+            LOGGER.info(" Whatsapp phone Number="+smsRequest.getPhoneNumber());
+            LOGGER.info("Send sms {}", smsRequest);
+        } else {
+            throw new IllegalArgumentException(
+                    "Phone number [" + smsRequest.getPhoneNumber() + "] is not a valid number"
+            );
+        }
+    }
+
     private boolean isPhoneNumberValid(String phoneNumber) {
         // TODO: Implement phone number validator
         return true;
